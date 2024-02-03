@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="libros_hibernate" name="hibernate.EditorEscritor" optimistic-lock="none" table="editor_escritor">
+        <composite-id class="hibernate.EditorEscritorId" name="id">
+            <key-property name="editor" type="string">
+                <column name="editor"/>
+            </key-property>
+            <key-property name="escritor_dni" type="string">
+                <column name="escritor_dni"/>
+            </key-property>
+        </composite-id>
+        
+        <property name="fecha_inicio" type="int">
+			<column name="fecha_inicio" />
+		</property>
+        
+        <many-to-one class="hibernate.Editor" fetch="select" insert="false" name="editor" update="false">
+            <column name="editor" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="hibernate.Escritor" fetch="select" insert="false" name="escritor" update="false">
+            <column name="escritor_dni" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

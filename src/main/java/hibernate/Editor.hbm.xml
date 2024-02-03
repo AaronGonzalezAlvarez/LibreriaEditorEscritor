@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping>
+	<class name="hibernate.Editor" table="editor"
+		catalog="libros_hibernate">
+		<id name="editor" type="string">
+			<column name="editor" />
+			<generator class="assigned" />
+		</id>
+			
+		<property name="nivel" type="string">
+			<column name="nivel" length="45" />
+		</property>
+		
+		<set fetch="select" inverse="true" lazy="true" name="escritores" table="editor_escritor">
+            <key>
+                <column name="editor" not-null="true"/>
+            </key>
+            <one-to-many class="hibernate.EditorEscritor"/>
+        </set>
+		
+	</class>
+</hibernate-mapping>
